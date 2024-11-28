@@ -24,7 +24,7 @@ export default function Welcome({
                 <img
                     id="background"
                     className="absolute top-0 max-w-[100%]"
-                    src="/assets/bg_1_4.jpg"
+                    src="/assets/bg_1_7.jpg"
                 />
                 <div className="relative flex min-h-screen flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                     <div className="relative w-1/2 max-w-2xl px-6 lg:max-w-7xl">
