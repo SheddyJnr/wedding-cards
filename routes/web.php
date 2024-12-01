@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WeddingGuestController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -14,9 +15,26 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('WeddingGuests');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+// Route::get('/wedding-guests', function () {
+//     return Inertia::render('WeddingGuests');
+// })->middleware(['auth', 'verified'])->name('wedding-guests');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [WeddingGuestController::class, 'index'])->name('dashboard.index');
+    Route::post('/dashboard', [WeddingGuestController::class, 'store'])->name('dashboard.store');
+    Route::delete('/dashboard', [WeddingGuestController::class, 'destroy'])->name('dashboard.destroy');
+});
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/wedding-guests', [WeddingGuestController::class, 'index'])->name('wedding-guests.index');
+//     Route::post('/wedding-guests', [WeddingGuestController::class, 'store'])->name('wedding-guests.store');
+//     Route::delete('/wedding-guests', [WeddingGuestController::class, 'destroy'])->name('wedding-guests.destroy');
+// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -24,4 +42,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

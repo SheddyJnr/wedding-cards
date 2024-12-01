@@ -18,4 +18,13 @@ class WeddingGuest extends Model
         'gender',
         'marital_status',
     ];
+
+    // protected $casts = [
+    //     'rsvp' => 'number',
+    // ];
+
+    // public function setRsvpAttribute($value)
+    // {
+    //     $this->attributes['rsvp'] = $value === 'Yes' ? 1 : 0;
+    // }
 }
