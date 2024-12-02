@@ -2,17 +2,23 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeddingGuestController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+//Route::get('/', function () {
+//    return Inertia::render('Welcome', [
+//        'canLogin' => Route::has('login'),
+//        'canRegister' => Route::has('register'),
+//        'laravelVersion' => Application::VERSION,
+//        'phpVersion' => PHP_VERSION,
+//    ]);
+//});
+
+Route::namespace('/')->group(function () {
+    Route::get('/{id}/{name}', [WelcomeController::class, 'index'])->name('welcome.index');
+    Route::put('/{id}', [WelcomeController::class, 'update'])->name('welcome.update');
 });
 
 Route::get('/dashboard', function () {
@@ -28,13 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard', [WeddingGuestController::class, 'store'])->name('dashboard.store');
     Route::delete('/dashboard', [WeddingGuestController::class, 'destroy'])->name('dashboard.destroy');
 });
-
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/wedding-guests', [WeddingGuestController::class, 'index'])->name('wedding-guests.index');
-//     Route::post('/wedding-guests', [WeddingGuestController::class, 'store'])->name('wedding-guests.store');
-//     Route::delete('/wedding-guests', [WeddingGuestController::class, 'destroy'])->name('wedding-guests.destroy');
-// });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
