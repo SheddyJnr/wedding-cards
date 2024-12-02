@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->string('invitation_link')->nullable();
             $table->integer('rsvp')->nullable();
             $table->string('title');
-            $table->string('gender');
-            $table->string('marital_status');
+            $table->string('gender')->nullable();
+            $table->string('marital_status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
