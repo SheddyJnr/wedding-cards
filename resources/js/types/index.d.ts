@@ -13,11 +13,11 @@ export type PageProps<
     };
 };
 
-export interface WeddingGuestI {
+export interface WeddingGuestI extends PageProps {
     id: number;
     title: string;
     name: string;
-    phone: string;
+    phone_number: string;
     invitation_link: string;
     rsvp: number;
 }

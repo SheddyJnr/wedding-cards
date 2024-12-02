@@ -15,9 +15,9 @@ Route::get('/', function () {
     ]);
 });
 
-// Route::get('/dashboard', function () {
-//     return Inertia::render('WeddingGuests');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return Inertia::render('WeddingGuests');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('/wedding-guests', function () {
 //     return Inertia::render('WeddingGuests');

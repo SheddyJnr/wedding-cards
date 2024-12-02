@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\WeddingGuest;
 use Inertia\Inertia;
+use Illuminate\Http\RedirectResponse;
 
 class WeddingGuestController extends Controller
 {
@@ -45,9 +46,9 @@ class WeddingGuestController extends Controller
     {
         // Handle updating a specific wedding guest
     }
-
-    public function destroy($id)
+    public function destroy(Request $request): RedirectResponse
     {
-        // Handle deleting a specific wedding guest
+        WeddingGuest::destroy($request->id);
+        return redirect()->route('dashboard')->with('success', 'Wedding guest deleted successfully!');
     }
 }
