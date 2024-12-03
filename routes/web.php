@@ -21,18 +21,18 @@ Route::namespace('/')->group(function () {
     Route::put('/{id}', [WelcomeController::class, 'update'])->name('welcome.update');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('WeddingGuests');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('WeddingGuests');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::get('/wedding-guests', function () {
 //     return Inertia::render('WeddingGuests');
 // })->middleware(['auth', 'verified'])->name('wedding-guests');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [WeddingGuestController::class, 'index'])->name('dashboard.index');
+    Route::get('/dashboard', [WeddingGuestController::class, 'index'])->name('dashboard');
     Route::post('/dashboard', [WeddingGuestController::class, 'store'])->name('dashboard.store');
-    Route::put('/dashboard', [WeddingGuestController::class, 'update'])->name('dashboard.update');
+    Route::put('/dashboard/{id}', [WeddingGuestController::class, 'update'])->name('dashboard.update');
     Route::delete('/dashboard', [WeddingGuestController::class, 'destroy'])->name('dashboard.destroy');
 });
 

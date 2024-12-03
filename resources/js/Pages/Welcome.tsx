@@ -1,3 +1,4 @@
+import CustomAlert from "@/Components/CustomAlert";
 import PrimaryButton from "@/Components/PrimaryButton";
 import { PageProps, WeddingGuestI } from "@/types";
 import { Head, Link, useForm } from "@inertiajs/react";
@@ -5,7 +6,8 @@ import { FormEventHandler } from "react";
 
 export default function Welcome({
     weddingGuest,
-}: PageProps<{ weddingGuest: WeddingGuestI }>) {
+    successRSVP,
+}: PageProps<{ weddingGuest: WeddingGuestI; successRSVP: string }>) {
     const handleImageError = () => {
         document
             .getElementById("screenshot-container")
@@ -30,6 +32,14 @@ export default function Welcome({
     return (
         <>
             <Head title={""} />
+            {/* {successRSVP && (
+                <CustomAlert
+                    variant="success"
+                    title="Success!"
+                    description={successRSVP}
+                    className="my-custom-class"
+                />
+            )} */}
             <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
                 <img
                     id="background"
@@ -57,7 +67,9 @@ export default function Welcome({
                                 <div className="flex flex-col items-center gap-4">
                                     {weddingGuest.rsvp === 1 ? (
                                         <p className="text-lg font-semibold text-center text-green-700">
-                                            Thank you for accepting our invitation. We look forward to seeing you!
+                                            Thank you for accepting our
+                                            invitation. We look forward to
+                                            seeing you!
                                         </p>
                                     ) : (
                                         <PrimaryButton

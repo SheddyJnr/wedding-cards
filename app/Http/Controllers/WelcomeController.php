@@ -28,7 +28,7 @@ class WelcomeController extends Controller
             ]);
         }
 
-        return redirect()->route('welcome.index', ['id' => $id, 'name' => $weddingGuest->name])->with('success', 'Thank you for accepting our invitation.');
+        return redirect()->route('welcome.index', ['id' => $id, 'name' => $weddingGuest->name])->with('successRSVP', 'Thank you for accepting our invitation.');
     }
 
     public function destroy($id) {}

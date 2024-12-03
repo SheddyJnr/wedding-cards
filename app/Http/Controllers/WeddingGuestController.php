@@ -34,7 +34,7 @@ class WeddingGuestController extends Controller
 
     public function update($id)
     {
-        $appUrl = env('APP_URL');
+        $appUrl = config('app.url');
 
         $guest = WeddingGuest::find($id);
 
