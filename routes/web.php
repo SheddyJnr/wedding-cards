@@ -32,6 +32,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [WeddingGuestController::class, 'index'])->name('dashboard.index');
     Route::post('/dashboard', [WeddingGuestController::class, 'store'])->name('dashboard.store');
+    Route::put('/dashboard', [WeddingGuestController::class, 'update'])->name('dashboard.update');
     Route::delete('/dashboard', [WeddingGuestController::class, 'destroy'])->name('dashboard.destroy');
 });
 

@@ -20,7 +20,15 @@ class WelcomeController extends Controller
 
     public function update($id)
     {
-        dd($id);
+        $weddingGuest = WeddingGuest::find($id);
+
+        if ($weddingGuest) {
+            $weddingGuest->update([
+                'rsvp' => 1
+            ]);
+        }
+
+        return redirect()->route('welcome.index', ['id' => $id, 'name' => $weddingGuest->name])->with('success', 'Thank you for accepting our invitation.');
     }
 
     public function destroy($id) {}

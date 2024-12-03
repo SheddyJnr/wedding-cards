@@ -32,6 +32,7 @@ export default function WeddingGuests({
         data,
         setData,
         post,
+        put,
         processing,
         errors,
         reset,
@@ -50,7 +51,12 @@ export default function WeddingGuests({
         });
     };
 
-    const handleGenerateLink = (id: number) => {};
+    const handleGenerateLink = (id: number) => {
+        console.log(id);
+        put(route("dashboard.update", { id }), {
+            onFinish: () => reset(),
+        });
+    };
 
     const handleDelete = (id: number) => {
         if (confirm("Are you sure you want to delete this guest?")) {
@@ -189,6 +195,9 @@ export default function WeddingGuests({
                                                 Invitation link
                                             </th>
                                             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                RSVP
+                                            </th>
+                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Actions
                                             </th>
                                         </tr>
@@ -208,6 +217,11 @@ export default function WeddingGuests({
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                     {guest.invitation_link}
                                                 </td>
+                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    {guest.rsvp === 1
+                                                        ? "Yes"
+                                                        : "No"}
+                                                </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                     <button
                                                         onClick={() =>
@@ -219,16 +233,6 @@ export default function WeddingGuests({
                                                     >
                                                         Generate Invitation Link
                                                     </button>
-                                                    {/* <button
-                                                        onClick={() =>
-                                                            handleDelete(
-                                                                guest.id
-                                                            )
-                                                        }
-                                                        className="text-red-600 hover:text-red-900"
-                                                    >
-                                                        Delete
-                                                    </button> */}
                                                     <DangerButton
                                                         onClick={() =>
                                                             handleDelete(

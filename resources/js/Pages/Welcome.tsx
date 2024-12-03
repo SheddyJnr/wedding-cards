@@ -55,12 +55,18 @@ export default function Welcome({
                                     </h1>
                                 </div>
                                 <div className="flex flex-col items-center gap-4">
-                                    <PrimaryButton
-                                        className="ms-4"
-                                        disabled={processing}
-                                    >
-                                        Click here to RSVP
-                                    </PrimaryButton>
+                                    {weddingGuest.rsvp === 1 ? (
+                                        <p className="text-lg font-semibold text-center text-green-700">
+                                            Thank you for accepting our invitation. We look forward to seeing you!
+                                        </p>
+                                    ) : (
+                                        <PrimaryButton
+                                            className="ms-4"
+                                            disabled={processing}
+                                        >
+                                            Click here to RSVP
+                                        </PrimaryButton>
+                                    )}
                                 </div>
                             </form>
                         </div>

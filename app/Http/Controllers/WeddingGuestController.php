@@ -32,6 +32,21 @@ class WeddingGuestController extends Controller
         return redirect(route('dashboard', absolute: false))->with('success', 'Wedding guest added successfully!');
     }
 
+    public function update($id)
+    {
+        $appUrl = env('APP_URL');
+
+        $guest = WeddingGuest::find($id);
+
+        $invitationLink = $appUrl . '/' . $guest->id . '/' . $guest->name;
+
+        $guest->update([
+            'invitation_link' => $invitationLink
+        ]);
+
+        return redirect(route('dashboard', absolute: false))->with('success', 'Invitation link successfully generated!');
+    }
+
     public function show($id)
     {
         // Show a specific wedding guest
@@ -42,10 +57,6 @@ class WeddingGuestController extends Controller
         // Show form to edit a specific wedding guest
     }
 
-    public function update(Request $request, $id)
-    {
-        // Handle updating a specific wedding guest
-    }
     public function destroy(Request $request): RedirectResponse
     {
         WeddingGuest::destroy($request->id);
